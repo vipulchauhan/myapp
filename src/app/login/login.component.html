@@ -8,7 +8,7 @@
                 <div class="form-content">
                     <div class="form-group">
                         <input type="email" class="form-control input-underline input-lg" id="email" name="email"
-                            placeholder="Email" ngModel required>
+                            placeholder="Email" email  #email="ngModel"  ngModel required>
                     </div>
 
                     <div class="form-group">
@@ -17,11 +17,15 @@
                             placeholder="Password">
                     </div>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']"
+                <a class="btn rounded-btn"
                     (click)="onLoggedin()"> Log in </a>
                 &nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
             </form>
+            <hr>
+            <div *ngIf="!email.valid && email.touched" class="alert alert-danger">
+                <strong>Warning!</strong> {{errorMsg}}
+            </div>
         </div>
     </div>
 </div>
