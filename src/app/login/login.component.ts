@@ -14,11 +14,16 @@ export class LoginComponent implements OnInit {
     constructor(public router: Router, private authService: AuthService) {}
     @ViewChild('loginForm')
     regForm: NgForm;
-
+    errorMsg = 'Enter valid email address';
     ngOnInit() {}
 
     onLoggedin() {
+        console.log(this.regForm);
+        if (!this.regForm.valid) {
+            return;
+        }
         console.log(this.regForm.value.email);
         this.authService.login(this.regForm.value.email);
+        this.router.navigate(['/dashboard']);
     }
 }
